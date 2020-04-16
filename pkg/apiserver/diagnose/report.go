@@ -97,11 +97,9 @@ func GetReportTablesForDisplay(startTime, endTime string, db *gorm.DB, sqliteDB 
 			continue
 		}
 		category := strings.Join(tbl.Category, ",")
-		if lastCategory == "" {
+		if category != lastCategory {
 			lastCategory = category
-			continue
-		}
-		if category == lastCategory {
+		} else {
 			tbl.Category = []string{""}
 		}
 	}
